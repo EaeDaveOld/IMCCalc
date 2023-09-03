@@ -1,38 +1,37 @@
-# Calculadora de IMC
+print("### CALCULADORA DE IMC ###")
 
-print("### CALCULADORA DE IMC ###")  # Mostra ao usuário a proposta do programa
+while True:
+    try:
+        altura = float(input('Digite sua altura (em metros, use "." no lugar da ","): '))
+        peso = float(input('Digite o seu peso (em kg, use "." no lugar da ","): '))
 
-while True:  # Criando um laço de repetição
-    try:  # Tratamento de erros com try
-        altura = float(input('Digite sua altura (em metros) - ( e use "." no lugar da ","): '))
-        peso = float(input('Digite o seu peso (em kg) - (e use "." no lugar da ","): '))
+        if altura <= 0 or peso <= 0:
+            print('Altura e peso devem ser valores positivos e maiores que zero.')
+            continue
 
-        imc = peso / (altura ** 2)
-        print(f'Você tem {altura}m de altura, {peso}kg de peso e seu IMC é de: {imc:.2f}')
+        imc = round(peso / (altura ** 2), 1)
+
+        print(f'Você tem {altura}m de altura, {peso}kg de peso e seu IMC é de: {imc}')
 
         if imc < 18.5:
-            print('Seu estado de classificação é "Magreza"')
-        elif imc >= 18.5 and imc < 25:
-            print('Seu estado de classificação é "Normal"')
-        elif imc >= 25 and imc < 30:
-            print('Seu estado de classificação é "Sobrepeso"')
-        elif imc >= 30 and imc < 35:
-            print('Seu estado de classificação é "Obesidade grau I"')
-        elif imc >= 35 and imc < 40:
-            print('Seu estado de classificação é "Obesidade grau II"')
-        elif imc > 40:
-            print('Seu estado de classificação é "Obesidade grau III"')
+            print('Seu estado de classificação é "Magreza".')
+        elif imc < 24.9:
+            print('Seu estado de classificação é "Normal".')
+        elif imc < 29.9:
+            print('Seu estado de classificação é "Sobrepeso".')
+        elif imc < 34.9:
+            print('Seu estado de classificação é "Obesidade grau I".')
+        elif imc < 39.9:
+            print('Seu estado de classificação é "Obesidade grau II".')
+        else:
+            print('Seu estado de classificação é "Obesidade grau III".')
 
         novo_calculo = input('Deseja fazer um novo cálculo de IMC? [S]im ou [N]ão: ').lower().startswith('s')
-        if novo_calculo is True:
-            continue
-        else:
+        if not novo_calculo:
             break
 
-    except ValueError:  # Se ocorrer algum tipo de erro de valor, então vai exibir as seguintes opções:
-        print('O valor digitado é inválido, digite somente números e utilize "." ao invés de ","')
+    except ValueError:
+        print('O valor digitado é inválido, digite somente números e utilize "." ao invés de ",".')
         tentar_novamente = input('Deseja tentar novamente? [S]im ou [N]ão: ').lower().startswith('s')
-        if tentar_novamente is True:
-            continue
-        else:
+        if not tentar_novamente:
             break
